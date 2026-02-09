@@ -27,13 +27,13 @@
         </div>
       </div>
     </main>
-    <TableOfContents v-if="currentPostComponent" class="toc-wrapper" :current-post-component="currentPostComponent" />
-    <Footer />
+    <TableOfContents v-if="currentPostComponent" />
+    <Footer class="post-footer" />
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch } from 'vue'
+import { ref, computed, onMounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { postsData } from '../data/posts.js'
 import { ElIcon } from 'element-plus'
@@ -56,6 +56,9 @@ const loadPostComponent = async (postId) => {
   try {
     const component = await import(`../views/post${postId}/post${postId}.vue`)
     currentPostComponent.value = component.default
+    
+    // 确保组件加载完成后触发更新
+    await nextTick()
   } catch (error) {
     console.error(`无法加载文章 ${postId}:`, error)
     currentPostComponent.value = null
@@ -82,6 +85,11 @@ onMounted(() => {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+/* 防止在文章页面显示其他组件 */
+.post-page :deep(.post-list) {
+  display: none !important;
 }
 
 .main-content {
@@ -197,20 +205,5 @@ onMounted(() => {
   font-family: Arial, sans-serif;
   line-height: 2;
   letter-spacing: 0.8px;
-}
-
-.toc-wrapper {
-  position: fixed;
-  right: 20px;
-  top: 100px;
-  width: 280px;
-}
-
-@media (max-width: 1400px) {
-  .toc-wrapper {
-    position: static;
-    width: 100%;
-    margin: 20px 0;
-  }
 }
 </style>
