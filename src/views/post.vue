@@ -27,7 +27,7 @@
         </div>
       </div>
     </main>
-    <TableOfContents v-if="currentPostComponent" />
+    <TableOfContents v-if="currentPostComponent" class="toc-wrapper" :current-post-component="currentPostComponent" />
     <Footer />
   </div>
 </template>
@@ -197,5 +197,20 @@ onMounted(() => {
   font-family: Arial, sans-serif;
   line-height: 2;
   letter-spacing: 0.8px;
+}
+
+.toc-wrapper {
+  position: fixed;
+  right: 20px;
+  top: 100px;
+  width: 280px;
+}
+
+@media (max-width: 1400px) {
+  .toc-wrapper {
+    position: static;
+    width: 100%;
+    margin: 20px 0;
+  }
 }
 </style>
