@@ -77,6 +77,9 @@ onMounted(() => {
   if (route.params.id) {
     loadPostComponent(route.params.id)
   }
+
+  // 确保页面滚动到顶部
+  window.scrollTo(0, 0)
 })
 </script>
 
