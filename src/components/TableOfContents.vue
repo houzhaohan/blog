@@ -45,8 +45,8 @@ const extractHeadings = () => {
     const tryExtract = (attempt = 0) => {
       const postContent = document.querySelector('.post-content')
       if (!postContent) {
-        // 如果找不到 .post-content，重试最多3次，每次间隔100ms
-        if (attempt < 3) {
+        // 如果找不到 .post-content，重试最多10次，每次间隔100ms
+        if (attempt < 10) {
           setTimeout(() => tryExtract(attempt + 1), 100)
           return
         }
@@ -57,13 +57,13 @@ const extractHeadings = () => {
       const headingElements = postContent.querySelectorAll('h2, h3')
       
       // 如果找到容器但还没有标题，也重试
-      if (headingElements.length === 0 && attempt < 3) {
+      if (headingElements.length === 0 && attempt < 10) {
         setTimeout(() => tryExtract(attempt + 1), 100)
         return
       }
 
       headings.value = Array.from(headingElements).map((element, index) => {
-        // Generate unique ID if not exists
+        // 如果标题没有ID，生成唯一ID
         if (!element.id) {
           element.id = `heading-${index}-${element.textContent.trim().replace(/\s+/g, '-').toLowerCase()}`
         }
@@ -181,7 +181,7 @@ onMounted(() => {
           subtree: true,
           characterData: true
         })
-      } else if (attempt < 5) {
+      } else if (attempt < 15) {
         setTimeout(() => tryObserve(attempt + 1), 200)
       }
     }
