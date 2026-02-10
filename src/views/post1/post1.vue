@@ -107,7 +107,7 @@ hello();"
     <BlogStyles
       type="alert"
       alertTitle="声明"
-      alertDescription="本博客系统完全由houzhaohan开发，保留所有权利。MIT证书"
+      alertDescription="本博客系统完全由houzhaohan开发，保留所有权利。Apache License 2.0"
       alertType="warning"
     />
   </div>
