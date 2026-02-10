@@ -13,8 +13,8 @@
                 <span>邮箱</span>
               </div>
             </template>
-            <el-link type="primary" href="mailto:electronicmonkey@qq.com" :underline="false">
-              electronicmonkey@qq.com
+            <el-link type="primary" href="mailto:me@houzhaohan.vip" :underline="false">
+              me@houzhaohan.vip
             </el-link>
           </el-card>
           
