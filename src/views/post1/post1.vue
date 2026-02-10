@@ -9,10 +9,10 @@
         <el-link 
           type="primary" 
           :underline="false" 
-          href="https://github.com/houzhaohan/vue-blog"
+          href="https://github.com/houzhaohan/blog"
           target="_blank"
         >
-          https://github.com/houzhaohan/vue-blog
+          https://github.com/houzhaohan/blog
         </el-link>
       </el-text>
     </div>
