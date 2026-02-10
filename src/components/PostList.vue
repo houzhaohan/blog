@@ -27,7 +27,7 @@
         :small="true"
         :disabled="false"
         :background="true"
-        layout="total, sizes, prev, pager, next, jumper"
+        layout="total, prev, pager, next, sizes"
         :pager-count="5"
         :total="posts.length"
         @size-change="handleSizeChange"
@@ -138,29 +138,5 @@ const viewPost = (postId) => {
   display: flex;
   justify-content: center;
   padding: 20px 0;
-}
-
-@media (max-width: 768px) {
-  .pagination-container :deep(.el-pagination) {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-  }
-  
-  .pagination-container :deep(.el-pagination__total) {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .pagination-container :deep(.el-pagination__sizes) {
-    width: 100%;
-    text-align: center;
-  }
-  
-  .pagination-container :deep(.el-pagination__jump) {
-    width: 100%;
-    text-align: center;
-  }
 }
 </style>
