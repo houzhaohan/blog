@@ -4,7 +4,7 @@
       <el-header>
         <div class="header-content">
           <div class="title-section">
-            <el-avatar :size="40" src="/src/assets/myself.webp" />
+            <el-avatar :size="40" :src="avatarSrc" />
             <h1 class="blog-title">houzhaohan的博客</h1>
           </div>
           
@@ -40,6 +40,7 @@
 import { ref, onMounted, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { Menu } from '@element-plus/icons-vue'
+import avatarSrc from '../assets/myself.webp'
 
 const route = useRoute()
 const router = useRouter()
