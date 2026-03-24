@@ -62,7 +62,7 @@ const fetchIp = async () => {
   error.value = ''
   
   try {
-    const response = await fetch('http://ip-api.com/json/?lang=zh-CN')
+    const response = await fetch('https://ip-api.com/json/?lang=zh-CN')
     if (!response.ok) {
       throw new Error('网络请求失败')
     }
