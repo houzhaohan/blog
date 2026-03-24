@@ -1,208 +1,248 @@
 <template>
-  <div class="ip-container">
-    <el-card class="ip-card" shadow="hover">
-      <template #header>
-        <div class="card-header">
-          <span>当前IP地址</span>
-          <el-button type="primary" @click="fetchIp" :loading="loading" size="small">
-            刷新
-          </el-button>
-        </div>
-      </template>
-      
-      <div class="ip-content">
-        <div v-if="loading" class="loading-section">
-          <el-icon class="is-loading"><Loading /></el-icon>
-          <span>正在获取IP地址...</span>
-        </div>
-        
-        <div v-else-if="error" class="error-section">
-          <el-icon color="#F56C6C"><Warning /></el-icon>
-          <span class="error-text">{{ error }}</span>
-        </div>
-        
-        <div v-else class="ip-display">
-          <div class="ip-label">您的公网IP地址是：</div>
-          <div class="ip-value">{{ ipAddress }}</div>
-          <div class="ip-info" v-if="ipInfo">
-            <div class="info-item">
-              <span class="info-label">国家：</span>
-              <span class="info-value">{{ ipInfo.country || '未知' }}</span>
-            </div>
-            <div class="info-item" v-if="ipInfo.regionName">
-              <span class="info-label">区域：</span>
-              <span class="info-value">{{ ipInfo.regionName }}</span>
-            </div>
-            <div class="info-item" v-if="ipInfo.city">
-              <span class="info-label">城市：</span>
-              <span class="info-value">{{ ipInfo.city }}</span>
-            </div>
-            <div class="info-item" v-if="ipInfo.isp">
-              <span class="info-label">运营商：</span>
-              <span class="info-value">{{ ipInfo.isp }}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </el-card>
+  <div class="post-content">
+    <h2>一、前言</h2>
+    <p>欢迎阅读我的第一篇博客文章！在这篇文章中，我将介绍博客开发过程与使用技巧。</p>
+    <p>本博客是一个纯前端博客，使用vue3框架开发。</p>
+    <div>
+      <el-text type="success" size="large">
+        本博客代码完全开源，开源地址：
+        <el-link 
+          type="primary" 
+          :underline="false" 
+          href="https://github.com/houzhaohan/blog"
+          target="_blank"
+        >
+          https://github.com/houzhaohan/blog
+        </el-link>
+      </el-text>
+    </div>
+
+    <div>
+      <el-text type="info" size="large">
+        上一版博客已经迁移到：
+        <el-link 
+          type="danger" 
+          :underline="false" 
+          href="https://blog2.houzhaohan.vip"
+          target="_blank"
+        >
+          https://blog2.houzhaohan.vip
+        </el-link>
+      </el-text>
+    </div>
+
+    <h2>二、开发使用的技术</h2>
+    <el-tree
+      :data="techData"
+      :props="defaultProps"
+      default-expand-all
+      style="margin: 20px 0;"
+    />
+
+    <h2>三、部分样式组件示例</h2>
+    <p>本博客可以使用element plus组件。</p>
+    <p>我自己定义了部分样式组件，方便复用。</p>
+    <!-- 图片样式示例 -->
+    <h3>1.图片样式</h3>
+    <BlogStyles
+      type="image"
+      :src="helloImage"
+      alt="一张图片"
+      caption="图1 图片示例"
+    />
+
+    <!-- 表格样式示例 -->
+    <h3>2.表格样式</h3>
+    <BlogStyles
+      type="table"
+      :tableData="[
+        { name: '南京农业大学', year: 2022, address: '南京' },
+        { name: '中国农业大学', year: 2026, address: '北京' },
+        { name: '华中农业大学', year: 2026, address: '武汉' },
+        { name: '华南农业大学', year: 2026, address: '广州' }
+      ]"
+      :columns="[
+        { prop: 'name', label: '学校', width: '180' },
+        { prop: 'year', label: '年份', width: '180' },
+        { prop: 'address', label: '地址' }
+      ]"
+    />
+
+    <!-- 代码样式示例 -->
+    <h3>3.代码样式</h3>
+    <BlogStyles
+      type="code"
+      codeContent="function hello() {
+  console.log('Hello, World!');
+  return 'Hello';
+}
+
+hello();"
+      codeTitle="JavaScript 示例"
+      language="javascript"
+    />
+
+    <!-- 引用样式示例 -->
+    <h3>4.引用样式</h3>
+    <BlogStyles
+      type="quote"
+      quoteContent="诚 朴 勤 仁"
+      quoteAuthor="南京农业大学校训"
+    />
+    
+    <!-- 列表样式示例 -->
+    <h3>5.列表样式</h3>
+    <BlogStyles
+      type="list"
+      listTitle="其他内容"
+      :listItems="[
+        '1. 本博客使用Cloudflare的CDN加速',
+        '2. 正在对上一版博客内容进行迁移',
+        '3. 欢迎联系我'
+      ]"
+    />
+
+    <!-- 警告样式示例 -->
+    <h3>6.警告样式</h3>
+    <BlogStyles
+      type="alert"
+      alertTitle="声明"
+      alertDescription="本博客系统完全由houzhaohan开发，保留所有权利。Apache License 2.0"
+      alertType="warning"
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
-import { Loading, Warning } from '@element-plus/icons-vue'
+import BlogStyles from '../../components/BlogStyles.vue'
+import helloImage from './hello.webp'
 
-const ipAddress = ref('')
-const ipInfo = ref(null)
-const loading = ref(false)
-const error = ref('')
-
-const fetchIp = async () => {
-  loading.value = true
-  error.value = ''
-  
-  try {
-    const response = await fetch('https://ip-api.com/json/?lang=zh-CN')
-    if (!response.ok) {
-      throw new Error('网络请求失败')
-    }
-    
-    const data = await response.json()
-    
-    if (data.status === 'success') {
-      ipAddress.value = data.query
-      ipInfo.value = data
-    } else {
-      throw new Error(data.message || '获取IP地址失败')
-    }
-  } catch (err) {
-    console.error('获取IP地址失败:', err)
-    error.value = err.message || '获取IP地址失败，请稍后重试'
-    
-    try {
-      const fallbackResponse = await fetch('https://api.ipify.org?format=json')
-      const fallbackData = await fallbackResponse.json()
-      ipAddress.value = fallbackData.ip
-      ipInfo.value = null
-      error.value = ''
-    } catch (fallbackErr) {
-      console.error('备用API也失败了:', fallbackErr)
-    }
-  } finally {
-    loading.value = false
+const techData = [
+  {
+    label: '前端框架与核心库',
+    children: [
+      {
+        label: 'Vue.js 3.x - 主要的前端框架',
+        children: [
+          { label: '使用 Vue 3 的 Composition API (script setup 语法)' },
+          { label: '版本：^3.5.27' }
+        ]
+      },
+      {
+        label: 'Vue Router 5.x - 路由管理',
+        children: [
+          { label: '用于页面导航和路由管理' },
+          { label: '版本：^5.0.2' }
+        ]
+      }
+    ]
+  },
+  {
+    label: 'UI 框架与组件库',
+    children: [
+      {
+        label: 'Element Plus - UI 组件库',
+        children: [
+          { label: '基于 Vue 3 的组件库' },
+          { label: '版本：^2.13.2' },
+          { label: '配置了中文语言包 (zh-cn)' }
+        ]
+      },
+      {
+        label: 'Element Plus Icons - 图标库',
+        children: [
+          { label: 'Element Plus 的图标组件' },
+          { label: '版本：^2.3.2' }
+        ]
+      }
+    ]
+  },
+  {
+    label: '构建工具与开发环境',
+    children: [
+      {
+        label: 'Vite - 构建工具与开发服务器',
+        children: [
+          { label: '快速的构建工具和开发服务器' },
+          { label: '版本：^5.0.0' },
+          { label: '配置端口：3000' }
+        ]
+      },
+      {
+        label: '@vitejs/plugin-vue - Vite Vue 插件',
+        children: [
+          { label: '让 Vite 支持 Vue 单文件组件' },
+          { label: '版本：^5.0.0' }
+        ]
+      }
+    ]
+  },
+  {
+    label: 'Web 技术与标准',
+    children: [
+      {
+        label: 'HTML5 - 标准网页结构',
+        children: [
+          { label: '使用 HTML5 语义化标签' },
+          { label: '设置了中文语言 (zh-CN)' }
+        ]
+      },
+      {
+        label: 'CSS3 - 样式表',
+        children: [
+          { label: '现代 CSS 布局（Flexbox）' },
+          { label: '响应式设计' },
+          { label: '自定义样式重置' }
+        ]
+      },
+      {
+        label: 'ES6+ JavaScript - 现代 JavaScript',
+        children: [
+          { label: '使用 ES6 模块导入/导出' },
+          { label: '箭头函数、解构赋值等现代语法' }
+        ]
+      }
+    ]
+  },
+  {
+    label: '项目结构与架构',
+    children: [
+      {
+        label: '单页面应用 (SPA) - 应用架构',
+        children: [
+          { label: '使用 Vue Router 实现单页面应用' },
+          { label: '组件化开发模式' }
+        ]
+      },
+      {
+        label: '组件化开发 - 代码组织',
+        children: [
+          { label: '可复用的 Vue 组件（Header、Footer、PostList 等）' },
+          { label: '模块化路由配置' }
+        ]
+      }
+    ]
+  },
+  {
+    label: '部署与构建',
+    children: [
+      {
+        label: '静态网站生成 - 部署方式',
+        children: [
+          { label: '构建输出到 dist/ 目录' },
+          { label: '支持静态部署' }
+        ]
+      }
+    ]
   }
-}
+]
 
-onMounted(() => {
-  fetchIp()
-})
+const defaultProps = {
+  children: 'children',
+  label: 'label'
+}
 </script>
 
 <style scoped>
-.ip-container {
-  padding: 20px;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  min-height: 400px;
-}
 
-.ip-card {
-  width: 100%;
-  max-width: 500px;
-}
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 16px;
-  font-weight: 500;
-}
-
-.ip-content {
-  min-height: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.loading-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  padding: 40px 0;
-  color: #909399;
-}
-
-.loading-section .el-icon {
-  font-size: 32px;
-}
-
-.error-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 15px;
-  padding: 40px 0;
-}
-
-.error-section .el-icon {
-  font-size: 48px;
-}
-
-.error-text {
-  color: #F56C6C;
-  text-align: center;
-}
-
-.ip-display {
-  text-align: center;
-  padding: 20px 0;
-}
-
-.ip-label {
-  font-size: 14px;
-  color: #606266;
-  margin-bottom: 15px;
-}
-
-.ip-value {
-  font-size: 32px;
-  font-weight: 600;
-  color: #409EFF;
-  margin-bottom: 25px;
-  word-break: break-all;
-}
-
-.ip-info {
-  text-align: left;
-  background: #f5f7fa;
-  border-radius: 8px;
-  padding: 15px;
-}
-
-.info-item {
-  display: flex;
-  padding: 8px 0;
-  border-bottom: 1px solid #ebeef5;
-}
-
-.info-item:last-child {
-  border-bottom: none;
-}
-
-.info-label {
-  width: 80px;
-  color: #909399;
-  font-size: 13px;
-  flex-shrink: 0;
-}
-
-.info-value {
-  color: #303133;
-  font-size: 13px;
-  flex: 1;
-}
 </style>
