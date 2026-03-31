@@ -1,4 +1,5 @@
 export const postsData = [
+  { id: 8, title: '万物上链', date: '2026-03-31', update:'', excerpt: '从贵金属到原油，现实资产正加速上链，地理与中介的壁垒瓦解，一个交易永不眠的超流动性时代已然到来。' },
   { id: 7, title: '股票代币正在重新上架', date: '2026-02-06', update:'', excerpt: '股票代币化将股票转化为区块链上的数字代币，以提升流动性、降低交易成本、并实现更高效的透明化资产管理与全球流通。' },
   { id: 6, title: '加密货币市场又崩了', date: '2026-02-02', update:'', excerpt: '加密货币市场再度崩塌，比特币触及60000美元关口。' },
   { id: 5, title: '华为云主机Ubuntu操作系统安装tailscale', date: '2025-12-03', update:'', excerpt: '在华为云Ubuntu操作系统安装tailscale vpn，并开启ip转发作为出口节点。' },
