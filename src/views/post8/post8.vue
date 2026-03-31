@@ -6,49 +6,49 @@
     <p>就在地缘火药桶引爆的同一周，币安上架了原油代币和天然气代币。任何人在任何地方，只需一部手机，就能持有“中东的石油”。</p>
     <p>导弹点燃的火焰，第一次直接传导到了每个人的钱包里。</p>
 
-    <h2>击穿高墙，从“纸原油”到真持有</h2>
+    <h2>从“纸原油”到真持有</h2>
     <p>物理世界与数字世界的墙，正在被击穿。</p>
     <p>大宗商品上链意味着什么？意味着你不再需要期货账户、不需要交割仓库、不需要担忧“纸原油”的穿仓噩梦。你所持有的每一个代币，都有对应实物的透明锚定。流动性全球共享，交易永不休市。</p>
     <p>伊朗的油轮能否出港，不再只是产油国的烦恼，也成了链上持币者钱包里的实时变量。</p>
 
-    <h2>超流动性时代，资产颗粒度从“一桶”到“一滴”</h2>
+    <h2>资产颗粒度从“一桶”到“一滴”</h2>
     <p>万物上链，正在从愿景走向现实。</p>
 
     <div class="carousel-container">
       <div class="carousel-wrapper">
-      <div class="image-item">
-        <img src="./p1.jpg" alt="Image 1" class="carousel-image">
-        <p class="image-caption">WTI原油代币永续合约</p>
+        <div class="image-item">
+          <img src="./p1.jpg" alt="Image 1" class="carousel-image">
+          <p class="image-caption">WTI原油代币永续合约</p>
+        </div>
+        <div class="image-item">
+          <img src="./p2.jpg" alt="Image 2" class="carousel-image">
+          <p class="image-caption">WTI原油代币永续合约</p>
+        </div>
+        <div class="image-item">
+          <img src="./p3.jpg" alt="Image 3" class="carousel-image">
+          <p class="image-caption">布伦特原油代币永续合约</p>
+        </div>
+        <div class="image-item">
+          <img src="./p4.jpg" alt="Image 4" class="carousel-image">
+          <p class="image-caption">布伦特原油代币永续合约</p>
+        </div>
+        <div class="image-item">
+          <img src="./p5.jpg" alt="Image 5" class="carousel-image">
+          <p class="image-caption">天然气代币永续合约</p>
+        </div>
+        <div class="image-item">
+          <img src="./p6.jpg" alt="Image 6" class="carousel-image">
+          <p class="image-caption">天然气代币永续合约</p>
+        </div>
+        <div class="image-item">
+          <img src="./p7.jpg" alt="Image 7" class="carousel-image">
+          <p class="image-caption">铜代币永续合约</p>
+        </div>
+        <div class="image-item">
+          <img src="./p8.jpg" alt="Image 8" class="carousel-image">
+          <p class="image-caption">铜代币永续合约</p>
+        </div>
       </div>
-      <div class="image-item">
-        <img src="./p2.jpg" alt="Image 2" class="carousel-image">
-        <p class="image-caption">WTI原油代币永续合约</p>
-      </div>
-      <div class="image-item">
-        <img src="./p3.jpg" alt="Image 3" class="carousel-image">
-        <p class="image-caption">布伦特原油代币永续合约</p>
-      </div>
-      <div class="image-item">
-        <img src="./p4.jpg" alt="Image 4" class="carousel-image">
-        <p class="image-caption">布伦特原油代币永续合约</p>
-      </div>
-      <div class="image-item">
-        <img src="./p5.jpg" alt="Image 5" class="carousel-image">
-        <p class="image-caption">天然气代币永续合约</p>
-      </div>
-      <div class="image-item">
-        <img src="./p6.jpg" alt="Image 6" class="carousel-image">
-        <p class="image-caption">天然气代币永续合约</p>
-      </div>
-      <div class="image-item">
-        <img src="./p7.jpg" alt="Image 7" class="carousel-image">
-        <p class="image-caption">铜代币永续合约</p>
-      </div>
-      <div class="image-item">
-        <img src="./p8.jpg" alt="Image 8" class="carousel-image">
-        <p class="image-caption">铜代币永续合约</p>
-      </div>
-    </div>
     </div>
 
     <p>从贵金属到工业金属，从原油到天然气，人类赖以生存的基础资源，正在被一层层映射到区块链上。接下来会是什么？电力、碳排放、算力、数据带宽，乃至土地上的农作物？</p>
@@ -56,7 +56,7 @@
 
     <h2>写在浪尖上：未来已来</h2>
     <p>这不是遥远的未来——它就在今天，就在币安的上架公告里，就在霍尔木兹海峡的浪尖上。</p>
-    </div>
+  </div>
 </template>
 
 <script setup>
