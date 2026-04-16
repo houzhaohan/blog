@@ -87,7 +87,7 @@
     <p>从“夯”级的ETH，到“拉完了”的BNB，本次评级的核心逻辑的是“价值优先”——ETH的“夯”，源于其开天辟地的技术贡献；BTC、SOL的“顶级”，源于其行业话语权和核心竞争力；DOGE的“人上人”，是meme币中的“矮子里拔将军”；XRP、稳定币的“NPC”，源于其毫无存在感或功能单一；BNB的“拉完了”，则是对其伪去中心化、依附平台的彻底否定。</p>
     <div style="overflow-x: auto;">
       <el-table :data="tableData" stripe>
-        <el-table-column prop="currency" label="币种" width="220" align="center"/>
+        <el-table-column prop="currency" label="币种" width="200" align="center"/>
         <el-table-column prop="rating" label="评级" width="auto" align="center" />
         <el-table-column prop="score" label="星数" width="260" header-align="center">
           <template #default="scope">
