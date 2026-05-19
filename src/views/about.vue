@@ -3,7 +3,7 @@
     <div class="about-container">
       <h2 class="about-title">关于我</h2>
       <div class="about-content">
-        <p>欢迎来到我的个人博客！我是一名热爱编程的开发者，专注于技术创新与投资研究。</p>
+        <p>欢迎来到我的个人博客！</p>
         
         <div class="about-cards">
           <el-card class="about-card" shadow="hover">
@@ -14,7 +14,6 @@
               </div>
             </template>
             <div class="card-content">
-              <p>你好！欢迎访问我的个人博客。</p>
               <p>我是一名热爱编程的开发者，不断学习新技术。</p>
               <p>创建这个博客的目的是记录我的投资历程、分享代码经验。</p>
             </div>
