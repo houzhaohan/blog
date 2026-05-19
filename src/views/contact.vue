@@ -9,7 +9,7 @@
           <el-card class="contact-card" shadow="hover">
             <template #header>
               <div class="card-header">
-                <el-icon class="card-icon"><Message /></el-icon>
+                <img class="card-icon" src="../assets/email.svg" />
                 <span>邮箱</span>
               </div>
             </template>
@@ -21,7 +21,7 @@
           <el-card class="contact-card" shadow="hover">
             <template #header>
               <div class="card-header">
-                <el-icon class="card-icon"><Link /></el-icon>
+                <img class="card-icon" src="../assets/github.svg" />
                 <span>GitHub</span>
               </div>
             </template>
@@ -33,7 +33,7 @@
           <el-card class="contact-card" shadow="hover">
             <template #header>
               <div class="card-header">
-                <el-icon class="card-icon"><User /></el-icon>
+                <img class="card-icon" src="../assets/linkedin.svg" />
                 <span>LinkedIn</span>
               </div>
             </template>
@@ -59,7 +59,7 @@
 </template>
 
 <script setup>
-import { Message, Link, User } from '@element-plus/icons-vue'
+
 </script>
 
 <style scoped>
@@ -116,7 +116,8 @@ import { Message, Link, User } from '@element-plus/icons-vue'
 }
 
 .card-icon {
-  font-size: 20px;
+  width: 20px;
+  height: 20px;
   color: #409eff;
 }
 
